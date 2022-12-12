@@ -1,10 +1,8 @@
-let input = prompt('Enter information about your book:')
 let container = document.getElementById('container')
 
-document.addEventListener('keyup', e => {
-    if (e.keyCode == 13) {
-        let info = document.createElement('p')
-        info.innerHTML = input
-        container.appendChild(info)
-    }
-})
+const newBook = () => {
+    let title = prompt('Enter title:')
+    let author = prompt('Enter author:')
+    let genre = prompt('Enter genre:')
+    let rating = prompt('Enter rating(1-5):')
+}
