@@ -2,15 +2,11 @@ let container = document.getElementById('container')
 let books = []
 
 function myLoad() {
-    let htmlSelect = document.getElementById("personList");
-    htmlSelect.style.visibility = "hidden";
-
     if (sessionStorage.getItem("hasCodeRunBefore") === null) {
-       // let arrayOfPersonObjects = [];
         sessionStorage.setItem("books", JSON.stringify(books));
         sessionStorage.setItem("hasCodeRunBefore", true);
     } else {
-        pers = JSON.parse(sessionStorage.getItem("books"));//Get the array of person objects from sessionStorage and assign it to the array 'pers'
+        books = JSON.parse(sessionStorage.getItem("books"));//Get the array of person objects from sessionStorage and assign it to the array 'pers'
         let i = 0;
         books.forEach(function(b) {//Loop through each person (p) in the pers array
             /*For each person in the array create an option element that displays 
