@@ -7,10 +7,19 @@
     <title>Document</title>
 </head>
 <body>
-    <div id="container">
-        <button onclick="newBook()">Add new book</button>
-        <h4>Click on a book to edit details.</h4>
-    </div>
+    <body onload="myLoad()">
+        <form>
+            <label for="title">Enter title: </label>
+            <input type="text" name="title" id="title" required>
+            <label for="author">Enter author: </label>
+            <input type="text" name="author" id="author" required>
+            <label for="genre">Enter genre: </label>
+            <input type="genre" name="genre" id="genre">
+            <label for="rating">Enter rating: </label>
+            <input type="rating" name="rating" id="rating">
+            <button onclick="newBook()">Create new book object</button>
+        </form>
+       
     <script src="./task1.js"></script>
 </body>
 </html>
