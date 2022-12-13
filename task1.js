@@ -1,5 +1,6 @@
 let shelf = document.getElementById('bookShelf')
 let books = []
+let n = 0;
 
 function myLoad() {
     if (sessionStorage.getItem("hasCodeRunBefore") === null) {
@@ -7,13 +8,12 @@ function myLoad() {
         sessionStorage.setItem("hasCodeRunBefore", true);
     } else {
         books = JSON.parse(sessionStorage.getItem("books"));//Get the array of book objects from sessionStorage and assign it to the array 'books'
-        let i = 0;
-        books.forEach(function(b) {//Loop through each book (b) in the books array
-            /*For each book in the array create an option element that displays 
-            that person's name and add it to the select (dropdown) element on the HTML page */
+        books.forEach(function(b) {
             let paragraph = document.createElement("p");
             paragraph.innerHTML = `Title: ${b.title} | author: ${b.author} | genre: ${b.genre} | rating: ${b.rating}`
-            paragraph.id = b.title;
+            paragraph.id = n;
+            n++;
+            paragraph.classList.add('bookObj');
             shelf.appendChild(paragraph);
         });
     }
@@ -37,3 +37,28 @@ const newBook = () => {
     books.push(newBook);
     sessionStorage.setItem('books', JSON.stringify(books));
 }
+
+document.getElementById('bookShelf').addEventListener('click', e => {
+    let question = prompt('Please choose what would you like to edit:\nTitle - T\nAuthor - A\nGenre - G\nRating - N')
+    if (question == 't' || 'T') {
+        let targetID = e.target.id;
+        let currentTitle = books[targetID].title;
+        let newTitle = prompt('Enter new title:');
+        books[targetID].title = newTitle;
+        let sessionShelf = JSON.parse(sessionStorage.getItem('books'));
+        sessionShelf[targetID].title = newTitle;
+        let replace = document.getElementById(targetID).innerHTML.replace(currentTitle, newTitle);
+        document.getElementById(targetID).innerHTML = replace;
+    } else if (question == 'a' || 'A') {
+        let targetID = e.target.id;
+        let currentAuthor = books[targetID].author;
+        let newAuthor = prompt('Enter new author:');
+        books[targetID].title = newTitle;
+        let sessionShelf = JSON.parse(sessionStorage.getItem('books'));
+        sessionShelf[targetID].title = newTitle;
+        console.log(books)
+        console.log(sessionShelf)
+        let replace = document.getElementById(targetID).innerHTML.replace(currentTitle, newTitle);
+        document.getElementById(targetID).innerHTML = replace;
+    }
+})
