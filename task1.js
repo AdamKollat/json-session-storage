@@ -13,6 +13,7 @@ function myLoad() {
             that person's name and add it to the select (dropdown) element on the HTML page */
             let paragraph = document.createElement("p");
             paragraph.innerHTML = `Title: ${b.title} | author: ${b.author} | genre: ${b.genre} | rating: ${b.rating}`
+            paragraph.id = b.title;
             shelf.appendChild(paragraph);
         });
     }
@@ -24,7 +25,6 @@ function Book(title, author, genre, rating) {
     this.genre = genre;
     this.rating = rating;
 }
-
 
 const newBook = () => {
     books = JSON.parse(sessionStorage.getItem('books'))
