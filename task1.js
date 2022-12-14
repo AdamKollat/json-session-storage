@@ -7,8 +7,8 @@ function myLoad() {
         sessionStorage.setItem("books", JSON.stringify(books));
         sessionStorage.setItem("hasCodeRunBefore", true);
     } else {
-        books = JSON.parse(sessionStorage.getItem("books"));//Get the array of book objects from sessionStorage and assign it to the array 'books'
-        books.forEach(function(b) {
+        books = JSON.parse(sessionStorage.getItem("books")); //Get the array of book objects from sessionStorage and assign it to the array 'books'
+        books.forEach(function (b) {
             let paragraph = document.createElement("p");
             paragraph.innerHTML = `Title: ${b.title} | author: ${b.author} | genre: ${b.genre} | rating: ${b.rating}`
             paragraph.id = n;
@@ -39,26 +39,48 @@ const newBook = () => {
 }
 
 document.getElementById('bookShelf').addEventListener('click', e => {
-    let question = prompt('Please choose what would you like to edit:\nTitle - T\nAuthor - A\nGenre - G\nRating - N')
-    if (question == 't' || 'T') {
+    let choice = prompt('Please choose what would you like to edit:\nTitle - T\nAuthor - A\nGenre - G\nRating - R');
+    if (choice === 't' || choice === 'T') {
         let targetID = e.target.id;
         let currentTitle = books[targetID].title;
         let newTitle = prompt('Enter new title:');
         books[targetID].title = newTitle;
         let sessionShelf = JSON.parse(sessionStorage.getItem('books'));
         sessionShelf[targetID].title = newTitle;
+        sessionStorage.setItem('books', JSON.stringify(sessionShelf))
         let replace = document.getElementById(targetID).innerHTML.replace(currentTitle, newTitle);
         document.getElementById(targetID).innerHTML = replace;
-    } else if (question == 'a' || 'A') {
+    } else if (choice === 'a' || choice === 'A') {
         let targetID = e.target.id;
         let currentAuthor = books[targetID].author;
         let newAuthor = prompt('Enter new author:');
-        books[targetID].title = newTitle;
+        books[targetID].author = newAuthor;
         let sessionShelf = JSON.parse(sessionStorage.getItem('books'));
-        sessionShelf[targetID].title = newTitle;
-        console.log(books)
-        console.log(sessionShelf)
-        let replace = document.getElementById(targetID).innerHTML.replace(currentTitle, newTitle);
+        sessionShelf[targetID].author = newAuthor;
+        sessionStorage.setItem('books', JSON.stringify(sessionShelf));
+        let replace = document.getElementById(targetID).innerHTML.replace(currentAuthor, newAuthor);
         document.getElementById(targetID).innerHTML = replace;
-    }
+    } else if (choice === 'g' || choice === 'G') {
+        let targetID = e.target.id;
+        let currentGenre = books[targetID].genre;
+        let newGenre = prompt('Enter new genre:');
+        books[targetID].genre = newGenre;
+        let sessionShelf = JSON.parse(sessionStorage.getItem('books'));
+        sessionShelf[targetID].genre = newGenre;
+        sessionStorage.setItem('books', JSON.stringify(sessionShelf));
+        let replace = document.getElementById(targetID).innerHTML.replace(currentGenre, newGenre);
+        document.getElementById(targetID).innerHTML = replace;
+    } else if (choice === 'r' || choice === 'R') {
+        let targetID = e.target.id;
+        let currentRating = books[targetID].rating;
+        let newRating = prompt('Enter new rating:');
+        books[targetID].rating = newRating;
+        let sessionShelf = JSON.parse(sessionStorage.getItem('books'));
+        sessionShelf[targetID].rating = newRating;
+        sessionStorage.setItem('books', JSON.stringify(sessionShelf))
+        let replace = document.getElementById(targetID).innerHTML.replace(currentRating, newRating);
+        document.getElementById(targetID).innerHTML = replace;
+    } else {
+        alert('Invalid selection. Please try again.')
+    }  
 })
