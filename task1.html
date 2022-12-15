@@ -4,22 +4,26 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="./task1.css">
+    <title>Bookshelf</title>
 </head>
 <body>
     <body onload="myLoad()">
         <form>
-            <label for="title">Enter title: </label>
-            <input type="text" name="title" id="title" required>
-            <label for="author">Enter author: </label>
-            <input type="text" name="author" id="author" required>
-            <label for="genre">Enter genre: </label>
-            <input type="genre" name="genre" id="genre">
-            <label for="rating">Enter rating: </label>
-            <input type="rating" name="rating" id="rating">
-            <button onclick="newBook()">Create new book object</button>
+            <label for="title">Title: </label> <br>
+            <input type="text" name="title" id="title" required><br>
+            <label for="author">Author: </label><br>
+            <input type="text" name="author" id="author" required><br>
+            <label for="genre">Genre: </label><br>
+            <input type="genre" name="genre" id="genre"><br>
+            <label for="rating">Rating: </label><br>
+            <input type="rating" name="rating" id="rating"><br>
+            <button onclick="newBook()">Add new book</button><br>
         </form>
-       
+        
+       <div id="bookShelf">
+        <h4>Click on a book to edit</h4>
+       </div>
     <script src="./task1.js"></script>
 </body>
 </html>
